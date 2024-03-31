@@ -3,38 +3,65 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Multiple Dropdown Menus with Event Listeners</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
 </head>
 <body>
-    <h1>Multiple Dropdown Menus with Event Listeners</h1>
+    <h1>E7 Draft Assisster</h1>
     <div id="dropdowns">
-        {% for i in range(1, 6) %}
-            <form>
-                <select id="myPick{{ i }}" name="myPick{{ i }}">
-                    <option value="">Draft a Hero </option>
-                    {% for option in hero_list %}
-                        <option value="{{ option['code'] }}">{{ option["name"] }}</option>
-                    {% endfor %}
-                </select>
-            </form>
-   
-            <img id="myImg{{ i }}" src="" alt="Hero Portrait">
+        <div class="dropdown-column">
+            
+                {% for i in range(1, 6) %}
+                    <img class="portraitsMy" id="myImg{{ i }}" src="">
+                {% endfor %}
 
-        {% endfor %}
+        </div>
+        <div class="dropdown-column">
 
-        {% for i in range(1, 6) %}
-            <form>
-                <select id="enPick{{ i }}" name="en{{ i }}">
-                    <option value="">Draft a Hero </option>
-                    {% for option in hero_list %}
-                        <option value="{{ option['code'] }}">{{ option["name"] }}</option>
-                    {% endfor %}
-                </select>
-            </form>
-   
-            <img id="enImg{{ i }}" src="" alt="Hero Portrait">
+            <div class="dropdown-menu">
+                {% for i in range(1, 6) %}
+                    <form>
+                        <select id="myPick{{ i }}" name="myPick{{ i }}">
+                            <option value="">Draft a Hero </option>
+                            {% for option in hero_list %}
+                                <option value="{{ option['code'] }}">{{ option["name"] }}</option>
+                            {% endfor %}
+                        </select>
+                    </form>
+                {% endfor %}
+            </div>
+        </div>
 
-        {% endfor %}
+        <div class="dropdown-column">
+            
+      
+            <img class="asset" src="{{ url_for('get_vs') }}" alt="Example Image">
+
+
+        </div>
+
+        
+        <div class="dropdown-column">
+            <div class="dropdown-menu">
+                {% for i in range(1, 6) %}
+                    <form>
+                        <select id="enPick{{ i }}" name="en{{ i }}">
+                            <option value="">Draft a Hero </option>
+                            {% for option in hero_list %}
+                                <option value="{{ option['code'] }}">{{ option["name"] }}</option>
+                            {% endfor %}
+                        </select>
+                    </form>
+                {% endfor %}
+            </div>
+        </div>
+
+        <div class="dropdown-column">
+            
+            {% for i in range(1, 6) %}
+                <img class="portraitsEn" id="enImg{{ i }}" src="">
+            {% endfor %}
+
+    </div>
     </div>
 
     <script>
@@ -44,7 +71,6 @@
 
             dropdown.addEventListener('change', function(event) {
                 image.src = "https://static.smilegatemegaport.com/event/live/epic7/guide/images/hero/" + event.target.value + "_s.png";
-                console.log("https://static.smilegatemegaport.com/event/live/epic7/guide/images/hero/" + event.target.value + "_s.png")
             });
         }
 
@@ -54,7 +80,6 @@
 
             dropdown.addEventListener('change', function(event) {
                 image.src = "https://static.smilegatemegaport.com/event/live/epic7/guide/images/hero/" + event.target.value + "_s.png";
-                console.log("https://static.smilegatemegaport.com/event/live/epic7/guide/images/hero/" + event.target.value + "_s.png")
             });
         }
     </script>

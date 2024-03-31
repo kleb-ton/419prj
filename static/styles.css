@@ -1,0 +1,47 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0C0D0F; 
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+}
+
+#dropdowns {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+}
+
+.dropdown-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 0.25; /* Equal width columns */
+}
+
+.portraitsMy {
+    width: 100px; 
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #e60e0e;
+    margin-bottom: 10px;
+}
+.portraitsEn {
+    width: 100px; 
+    height: 100px;
+    border-radius: 50%;
+    border: 2px solid #200f9a;
+    margin-bottom: 10px;
+}
+img.assest{
+    width: 100px; 
+    height: 100px;
+    border-radius: 50%;
+}
+
+.dropdown-menu form {
+    margin: 5px 0;
+}
+
