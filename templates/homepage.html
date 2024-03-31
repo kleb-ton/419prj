@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
     <h1>E7 Draft Assisster</h1>
@@ -35,8 +36,54 @@
             
       
             <img class="asset" src="{{ url_for('get_vs') }}" alt="Example Image">
+            <div class="innerCol">
+                <img class="PrePor" id="myPrePor1" src="">
+                <img class="PrePor" id="myPrePor2" src="">
+                <img class="PrePor" id="enPrePor1" src="">
+                <img class="PrePor" id="enPrePor2" src="">
+            </div>
 
 
+            <div class="innerCol">
+            <form>
+                <select class="myPre1" id="myPre1{{ i }}" name="en{{ i }}">
+                    <option value="">Draft a Hero </option>
+                    {% for option in hero_list %}
+                        <option value="{{ option['code'] }}">{{ option["name"] }}</option>
+                    {% endfor %}
+                </select>
+            </form>
+
+            <form>
+                <select class="myPre2" id="myPre2{{ i }}" name="en{{ i }}">
+                    <option value="">Draft a Hero </option>
+                    {% for option in hero_list %}
+                        <option value="{{ option['code'] }}">{{ option["name"] }}</option>
+                    {% endfor %}
+                </select>
+            </form>
+
+            <form>
+                <select class="enPre1" id="enPre1{{ i }}" name="en{{ i }}">
+                    <option value="">Draft a Hero </option>
+                    {% for option in hero_list %}
+                        <option value="{{ option['code'] }}">{{ option["name"] }}</option>
+                    {% endfor %}
+                </select>
+            </form>
+            <form>
+                <select class="enPre2" id="enPre2{{ i }}" name="en{{ i }}">
+                    <option value="">Draft a Hero </option>
+                    {% for option in hero_list %}
+                        <option value="{{ option['code'] }}">{{ option["name"] }}</option>
+                    {% endfor %}
+                </select>
+            </form>
+        </div>
+
+       
+            <button type="submit" id="winButton">Call Endpoint</button>
+      
         </div>
 
         
@@ -82,6 +129,50 @@
                 image.src = "https://static.smilegatemegaport.com/event/live/epic7/guide/images/hero/" + event.target.value + "_s.png";
             });
         }
+
+        for (let i = 1; i <= 2; i++) {
+            let dropdown = document.getElementById('myPre' + i);
+            let image = document.getElementById('myPrePor' + i); 
+
+            dropdown.addEventListener('change', function(event) {
+                image.src = "https://static.smilegatemegaport.com/event/live/epic7/guide/images/hero/" + event.target.value + "_s.png";
+            });
+        }
+
+        for (let i = 1; i <= 2; i++) {
+            let dropdown = document.getElementById('enPre' + i);
+            let image = document.getElementById('enPrePor' + i); 
+
+            dropdown.addEventListener('change', function(event) {
+                image.src = "https://static.smilegatemegaport.com/event/live/epic7/guide/images/hero/" + event.target.value + "_s.png";
+            });
+        }
+
+
+        $(document).ready(function(){
+            $('#winButton').click(function(){
+                let selectedValues = {};
+                for (let i = 1; i <= 5; i++) {
+                    selectedValues['enPick'+i] = (document.getElementById('enPick'+i).value)
+                    selectedValues['myPick'+i] = (document.getElementById('myPick'+i).value)
+                }
+
+                for (let i = 1; i <= 2; i++) {
+                    selectedValues['myPre'+i] = (document.getElementById('myPre'+i).value)
+                    selectedValues['enPre'+i] = (document.getElementById('enPre'+i).value)
+                }
+         
+                $.ajax({
+                    url: '/calculateWin',
+                    type: 'POST',
+                    contentType: 'application/json',
+                    data: JSON.stringify(selectedValues),
+                    success: function(response){
+                        console.log(response)
+                    }
+                });
+            });
+        });
     </script>
 </body>
 </html>
