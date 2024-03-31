@@ -6,6 +6,9 @@ body {
     margin: 0;
     padding: 0;
 }
+h1{
+    text-align: center;
+}
 
 #dropdowns {
     display: flex;
@@ -41,7 +44,22 @@ img.assest{
     border-radius: 50%;
 }
 
-.dropdown-menu form {
-    margin: 5px 0;
+
+.selectMy{
+    width: 200px; 
+    margin: 40px;
+    border: 2px solid #e60e0e;
+    padding: 10px;
+    font-size: 16px;
+    font-family: fantasy;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
 }
 
+.selectEn{
+    width: 200px; 
+    margin: 40px;
+    border: 2px solid #200f9a;
+    padding: 10px;
+    font-size: 16px;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif ;
+}

@@ -20,7 +20,7 @@
             <div class="dropdown-menu">
                 {% for i in range(1, 6) %}
                     <form>
-                        <select id="myPick{{ i }}" name="myPick{{ i }}">
+                        <select class="selectMy" id="myPick{{ i }}" name="myPick{{ i }}">
                             <option value="">Draft a Hero </option>
                             {% for option in hero_list %}
                                 <option value="{{ option['code'] }}">{{ option["name"] }}</option>
@@ -44,7 +44,7 @@
             <div class="dropdown-menu">
                 {% for i in range(1, 6) %}
                     <form>
-                        <select id="enPick{{ i }}" name="en{{ i }}">
+                        <select class="selectEn" id="enPick{{ i }}" name="en{{ i }}">
                             <option value="">Draft a Hero </option>
                             {% for option in hero_list %}
                                 <option value="{{ option['code'] }}">{{ option["name"] }}</option>
