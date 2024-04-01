@@ -2,9 +2,11 @@ from flask import Flask, render_template, send_file, request, jsonify
 import json
 import pandas as pd
 from model import getModel
+from draft_logic import draft_response
 
 app = Flask(__name__)
-model = getModel()
+# model = getModel()
+# python app.py
 
 @app.route('/')
 def homepage():
@@ -22,6 +24,15 @@ def calculateWin():
     data = request.json  # Read JSON data sent from client
     # Process the data here
     print(data)
+    draft_list = list(data.values())
+        
+    print(draft_list)
+        
+    res = draft_response(draft_list[0], draft_list[1], draft_list[2], draft_list[3], draft_list[4],
+                   draft_list[5], draft_list[6], draft_list[7], draft_list[8], draft_list[9],
+                   draft_list[10], draft_list[11], draft_list[12], draft_list[13])    
+    print(res)
+    # getModel()
     return "Endpoint called successfully"
 
 if __name__ == '__main__':
