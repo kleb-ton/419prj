@@ -13,7 +13,7 @@
 
             {% for i in range(1, 6) %}
                 <input type="radio" id="myPost{{i}}" name="optionsMy" value="optionMy">
-                <label for="optionMy">Option {{i}}</label>
+                <label class="labelOp" for="optionMy">Ban</label>
                 </br></br></br></br></br>
             {% endfor %}
         </div>
@@ -101,9 +101,10 @@
             </br>
             </br>
             </br>
+            <h3 id ="winText"></h3>
             <button type="submit" id="winProb">Get Win Prediction</button>
         </br>
-            {{ pred }}
+           
     </br>
         </div>
 
@@ -133,7 +134,7 @@
 
             {% for i in range(1, 6) %}
                 <input type="radio" id="enPost{{i}}" name="optionsEn" value="optionEn">
-                <label for="optionEn">Option {{i}}</label>
+                <label  class="labelOp" for="optionEn">Ban</label>
                 </br></br></br></br></br>
             {% endfor %}
     </div>
@@ -192,14 +193,18 @@
                     selectedValues['myPre'+i] = (document.getElementById('myPre'+i).value)
                     selectedValues['enPre'+i] = (document.getElementById('enPre'+i).value)
                 }
-         
+                
+                let rec1 = document.getElementById("myRecPor1")
+                let rec2 = document.getElementById("myRecPor2")
                 $.ajax({
                     url: '/updateDraftPick',
                     type: 'POST',
                     contentType: 'application/json',
                     data: JSON.stringify(selectedValues),
                     success: function(response){
-                        console.log(response)
+                            rec1.src = "https://static.smilegatemegaport.com/event/live/epic7/guide/images/hero/" + response[0] + "_s.png";
+                            rec2.src = "https://static.smilegatemegaport.com/event/live/epic7/guide/images/hero/" + response[1] + "_s.png";
+                        
                     }
                 });
             });
@@ -231,14 +236,22 @@
                         selectedValues['enPost'] = (document.getElementById('enPick'+i).value)
                     }
                 }    
-         
+                let winText = document.getElementById('winText');
                 $.ajax({
                     url: '/calculateWin',
                     type: 'POST',
                     contentType: 'application/json',
                     data: JSON.stringify(selectedValues),
                     success: function(response){
-                        console.log(response)
+                        console.log(response.res)
+                        let isWin = response.res
+                        if(isWin == 1){
+                            winText.innerText = "Loss"
+                        }else{
+                            winText.innerText = "Win" 
+                        }
+                        
+                        
                     }
                 });
             });

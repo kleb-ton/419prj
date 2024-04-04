@@ -34,7 +34,7 @@ def updateDraftPick():
 
     draft_response_vals = res 
     print(res)
-    return render_template('homepage.html', draft_response_vals = draft_response_vals)
+    return draft_response_vals
 
 @app.route('/calculateWin', methods=['POST'])
 def calculateWin():
@@ -44,8 +44,8 @@ def calculateWin():
     
     print(draft_list)
     pred = getModel(draft_list)
-    print(pred)
-    return render_template('homepage.html', pred = pred)
+    print(pred[0])
+    return {'res':int(pred[0])}
 
 if __name__ == '__main__':
     app.run()
