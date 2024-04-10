@@ -31,7 +31,7 @@ def getModel(draft):
     file_path = "e7_data/drafts_dataset.csv"
     df = pd.read_csv(file_path)
     draft.append("0")
-    colNames  =['enemy1',"main1",'enemy2', 'main2', 'enemy3','main3', 'main4', 'enemy4', 'main5','enemy5', 'main_pre_b1', 'enemy_pre_b1','main_pre_b2', 'enemy_pre_b2', 'main_post_b','enemy_post_b' ,'is_first']
+    colNames  =['enemy1',"main1",'enemy2', 'main2', 'enemy3','main3', 'enemy4', 'main4', 'enemy5','main5', 'main_pre_b1', 'enemy_pre_b1','main_pre_b2', 'enemy_pre_b2', 'main_post_b','enemy_post_b' ,'is_first']
     draft_df = pd.DataFrame(np.array(draft).reshape(1,17),columns=colNames )
 
     y = df.iloc[:, -1]
